@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>Rock Paper Scissors</title>
+    <script>
+        // Define the choices
+        var choices = ["rock", "paper", "scissors"];
+        // Define the rules
+        var rules = {
+            "rock": "scissors",
+            "paper": "rock",
+            "scissors": "paper"
+        };
+        // Keep track of the scores
+        var userScore = 0;
+        var compScore = 0;
+        // Get a random choice for the computer
+        function getCompChoice() {
+            // Get a random index from 0 to 2
+            var index = Math.floor(Math.random() * 3);
+            // Return the corresponding choice
+            return choices[index];
+        }
+        // Check the result of the game
+        function checkResult(userChoice, compChoice) {
+            // Get the output element
+            var output = document.getElementById("output");
+            // Compare the choices
+            if (userChoice == compChoice) {
+                // It's a tie
+                output.innerHTML = "You chose " + userChoice + ".<br>The computer chose " + compChoice + ".<br>It's a tie!";
+            } else if (rules[userChoice] == compChoice) {
+                // The user wins
+                output.innerHTML = "You chose " + userChoice + ".<br>The computer chose " + compChoice + ".<br>You win!";
+                // Increment the user score
+                userScore++;
+            } else {
+                // The computer wins
+                output.innerHTML = "You chose " + userChoice + ".<br>The computer chose " + compChoice + ".<br>You lose!";
+                // Increment the computer score
+                compScore++;
+            }
+            // Update the score display
+            document.getElementById("userScore").innerHTML = userScore;
+            document.getElementById("compScore").innerHTML = compScore;
+        }
+    </script>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <p>Choose one of the options below and see if you can beat the computer.</p>
+    <button onclick="checkResult('rock', getCompChoice())">Rock</button>
+    <button onclick="checkResult('paper', getCompChoice())">Paper</button>
+    <button onclick="checkResult('scissors', getCompChoice())">Scissors</button>
+    <p id="output"></p>
+    <p>Your score: <span id="userScore">0</span></p>
+    <p>Computer's score: <span id="compScore">0</span></p>
+</body>
+</html>
